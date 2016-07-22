@@ -1,0 +1,6 @@
+---
+- hosts: all
+  sudo: yes
+  roles:
+    - role: my_role
+      var: non-default
