@@ -5,7 +5,7 @@
   ignore_errors: true
 
 - name: install homebrew if needed
-  shell: echo|ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  shell: yes | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   when: result|failed
 
 - name: run brew prune
