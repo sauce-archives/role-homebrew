@@ -1,2 +1,12 @@
 ---
+galaxy_info:
+  author: Sauce Labs
+  description: Install homebrew and manage homebrew packages
+  license: MIT
+  min_ansible_version: 1.9
+  galaxy_tags:
+    - osx
+    - homebrew
+    - brew
+    - cask
 dependencies: []
