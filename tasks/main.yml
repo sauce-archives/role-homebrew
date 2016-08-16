@@ -2,22 +2,12 @@
 - name: check if homebrew is present
   command: /usr/local/bin/brew --version
   register: result
+  changed_when: False
   ignore_errors: true
 
 - name: install homebrew if needed
   shell: echo | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   when: result|failed
-
-- name: run brew prune
-  shell: /usr/local/bin/brew prune
-
-- name: run brew update
-  shell: /usr/local/bin/brew update
-
-- name: run brew doctor
-  shell: /usr/local/bin/brew doctor
-  when: not ansible_distribution_version | match('10.11')
-  ignore_errors: true
 
 - name: Ensure configured taps are tapped.
   homebrew_tap:
@@ -29,6 +19,7 @@
   homebrew:
     name: "{{ item }}"
     state: latest
+    update_homebrew: yes
   with_items: "{{ homebrew_packages }}"
 
 - name: Install cask apps
