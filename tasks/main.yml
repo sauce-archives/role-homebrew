@@ -1,27 +1,27 @@
 ---
-- name: check if homebrew is present
+- name: Is Homebrew is installed?
   stat:
     path: /usr/local/bin/brew
   register: result
 
-- name: install homebrew if needed
+- name: Install Homebrew if not
   shell: echo | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   when: result.stat.exists == False
 
-- name: Ensure configured taps are tapped.
+- name: Configure Taps
   homebrew_tap:
     tap: "{{ item }}"
     state: present
   with_items: "{{ homebrew_taps }}"
 
-- name: Install brew packages
+- name: Install packages
   homebrew:
     name: "{{ item }}"
     state: latest
     update_homebrew: yes
   with_items: "{{ homebrew_packages }}"
 
-- name: Install cask apps
+- name: Install Cask packages
   homebrew_cask:
     name: "{{ item }}"
     state: present
