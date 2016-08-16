@@ -1,13 +1,12 @@
 ---
 - name: check if homebrew is present
-  command: /usr/local/bin/brew --version
+  stat:
+    path: /usr/local/bin/brew
   register: result
-  changed_when: False
-  ignore_errors: true
 
 - name: install homebrew if needed
   shell: echo | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  when: result|failed
+  when: result.stat.exists == False
 
 - name: Ensure configured taps are tapped.
   homebrew_tap:
