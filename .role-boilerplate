@@ -1,0 +1,13 @@
+---
+version: 0.3
+changelog:
+  0.3:
+    - Added OSX testing as an option
+    - Removed memory limitation so that OSX can boot
+    - Removed environment variable usage
+    - Changed inspec format to documentation
+    - File clean up
+  0.2:
+    - Meta compatability with Ansible Galaxy
+  0.1:
+    - Initial commit

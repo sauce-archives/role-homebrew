@@ -10,8 +10,6 @@ Make sure to run it as a regular user that will manage packages, since homebrew 
 - `homebrew_packages`: A list of brew packages to install.
 - `homebrew_cask`: A list of cask packages to install.
 
-...
-
 ## Example playbook
 
 ```
@@ -20,9 +18,9 @@ Make sure to run it as a regular user that will manage packages, since homebrew 
   roles:
     - role: homebrew
       homebrew_packages:
-        - ruby
+        - git
       homebrew_casks:
-        - firefox
+        - atom
 ```
 
 ## Testing

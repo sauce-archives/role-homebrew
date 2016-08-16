@@ -1,0 +1,28 @@
+---
+driver:
+  name: vagrant
+  provider: virtualbox
+  require_chef_omnibus: false
+
+provisioner:
+  hosts: test-kitchen
+  name: ansible_playbook
+  require_chef_for_busser: false
+  require_ruby_for_busser: false
+  ansible_verbosity: 2
+  ansible_verbose: true
+  ansible_sudo: false
+  idempotency_test: true
+  require_ansible_repo: false
+  update_package_repos: false
+  ansible_binary_path: /usr/local/bin # for the OSX image
+
+verifier:
+  name: inspec
+  format: documentation
+
+platforms:
+ - name: jvscott/osx10-ansible-1.9
+
+suites:
+  - name: default

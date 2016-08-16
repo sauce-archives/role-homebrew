@@ -1,6 +1,10 @@
 ---
 - hosts: all
-  sudo: yes
+  sudo: no
   roles:
-    - role: my_role
-      var: non-default
+    - role: role-homebrew
+      homebrew_packages:
+        - git
+      homebrew_casks:
+        - atom
+

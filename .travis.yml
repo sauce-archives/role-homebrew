@@ -1,0 +1,22 @@
+sudo: required
+dist: osx
+language: ruby
+rvm: 2.2
+
+env:
+  - ANSIBLE_VERSION=1.9.4
+  - ANSIBLE_VERSION=2.0.0.0
+  - ANSIBLE_VERSION=2.1.0.0
+
+install:
+  - sudo pip install ansible==$ANSIBLE_VERSION
+  - gem install inspec
+
+script:
+  - ansible-playbook -i localhost, -c local test/integration/default/default.yml
+  - >
+    ansible-playbook -i localhost, -c local test/integration/default/default.yml
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
+  - inspec exec test/integration/default/*_spec.rb
