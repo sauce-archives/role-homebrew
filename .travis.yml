@@ -1,16 +1,19 @@
 sudo: required
-dist: osx
-language: ruby
-rvm: 2.2
+os: osx
+language: generic
 
 env:
-  - ANSIBLE_VERSION=1.9.4
-  - ANSIBLE_VERSION=2.0.0.0
-  - ANSIBLE_VERSION=2.1.0.0
+  global:
+    - ANSIBLE_ROLES_PATH=$TRAVIS_BUILD_DIR/..
+  matrix:
+    - ANSIBLE_VERSION=ansible19
+    - ANSIBLE_VERSION=ansible20
 
 install:
-  - sudo pip install ansible==$ANSIBLE_VERSION
-  - gem install inspec
+  - brew update
+  - brew tap homebrew/versions
+  - brew install $ANSIBLE_VERSION
+  - gem install inspec --no-rdoc --no-ri
 
 script:
   - ansible-playbook -i localhost, -c local test/integration/default/default.yml
@@ -19,4 +22,4 @@ script:
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
-  - inspec exec test/integration/default/*_spec.rb
+  - inspec exec test/integration/default/role_spec.rb
