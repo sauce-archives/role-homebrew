@@ -4,6 +4,8 @@ This installs Homebrew, the Mac OS X package manager.
 
 Make sure to run it as a regular user that will manage packages, since homebrew does not officially support installing as root (see below for an example).
 
+[![Build Status](https://travis-ci.org/saucelabs/role-homebrew.svg?branch=master)](https://travis-ci.org/saucelabs/role-homebrew)
+
 ## Role variables
 
 - `homebrew_taps`: A list of brew taps to include.
