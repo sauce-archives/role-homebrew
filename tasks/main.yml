@@ -5,16 +5,19 @@
   register: result
 
 - name: Install Homebrew if not
+  sudo: no
   shell: echo | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   when: result.stat.exists == False
 
 - name: Configure Taps
+  sudo: no
   homebrew_tap:
     tap: "{{ item }}"
     state: present
   with_items: "{{ homebrew_taps }}"
 
 - name: Install packages
+  sudo: no
   homebrew:
     name: "{{ item }}"
     state: latest
@@ -22,6 +25,7 @@
   with_items: "{{ homebrew_packages }}"
 
 - name: Install Cask packages
+  sudo: no
   homebrew_cask:
     name: "{{ item }}"
     state: present
