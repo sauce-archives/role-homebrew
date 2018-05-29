@@ -12,6 +12,7 @@ env:
 install:
   - brew update
   - brew install $ANSIBLE_VERSION || true
+  - brew link $ANSIBLE_VERSION
   - gem install inspec --no-rdoc --no-ri
 
 script:
