@@ -1,7 +1,6 @@
 ---
 sudo: required
 os: osx
-language: python
 
 env:
   global:
@@ -11,6 +10,7 @@ env:
     - ANSIBLE_VERSION=ansible==2.0
 
 install:
+  - brew install python@2
   - pip install $ANSIBLE_VERSION
   - gem install inspec --no-rdoc --no-ri
 
