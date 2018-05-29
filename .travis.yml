@@ -1,3 +1,4 @@
+---
 sudo: required
 os: osx
 language: generic
@@ -6,13 +7,13 @@ env:
   global:
     - ANSIBLE_ROLES_PATH=$TRAVIS_BUILD_DIR/..
   matrix:
-    - ANSIBLE_VERSION=ansible19
-    - ANSIBLE_VERSION=ansible20
+    - ANSIBLE_VERSION=ansible@1.9
+    # - ANSIBLE_VERSION=ansible@2.0
 
 install:
   - brew update
-  - brew tap homebrew/versions
-  - brew install $ANSIBLE_VERSION
+  - brew install $ANSIBLE_VERSION || true
+  - brew link $ANSIBLE_VERSION --force
   - gem install inspec --no-rdoc --no-ri
 
 script:
