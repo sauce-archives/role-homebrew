@@ -7,7 +7,7 @@ env:
     - ANSIBLE_ROLES_PATH=$TRAVIS_BUILD_DIR/..
   matrix:
     - ANSIBLE_VERSION=ansible@1.9
-    - ANSIBLE_VERSION=ansible@2.0
+    # - ANSIBLE_VERSION=ansible@2.0
 
 install:
   - brew update
